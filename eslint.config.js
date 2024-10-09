@@ -1,27 +1,21 @@
-import js from '@eslint/js';
 import globals from 'globals';
+import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import prettier from 'eslint-plugin-prettier'; // Імпорт плагіна Prettier
+import prettier from 'eslint-plugin-prettier';
 
-export default tseslint.config(
-	{ ignores: ['dist'] },
-	{
-		extends: [js.configs.recommended, ...tseslint.configs.recommended],
-		files: ['**/*.{js,ts}'],
-		languageOptions: {
-			ecmaVersion: 2020,
-			globals: globals.browser,
-			parserOptions: {
-				project: ['tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json'],
-			},
-		},
-		plugins: {
-			prettier, // Установка плагіна Prettier
-		},
-		rules: {
-			'prettier/prettier': 'error', // Визначення правил які ми встановили для Prettier
-			// Тут ви можете додати будь-які інші правила для JavaScript
-			'no-console': 'warn',
-		},
-	},
-);
+export default [
+  { files: ['**/*.{js,mjs,cjs,ts}'] },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    plugins: {
+      prettier,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'prettier/prettier': 'error',
+      'no-console': 'warn',
+    },
+  },
+];
