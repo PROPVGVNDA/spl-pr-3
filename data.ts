@@ -1,10 +1,10 @@
-let professors: Professor[] = []
+const professors: Professor[] = [];
 
-let classrooms: Classroom[] = []
+const classrooms: Classroom[] = [];
 
-let courses: Course[] = []
+const courses: Course[] = [];
 
-let schedule: Lesson[] = []
+const schedule: Lesson[] = [];
 
 // Since TimeSlot has 7 possible time ranges one classroom can be occupied 7 times in one day
 const maxDailyClassroomLessons: number = 7;
